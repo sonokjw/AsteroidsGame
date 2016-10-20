@@ -7,6 +7,14 @@ public void setup()
 public void draw() 
 {
   //your code here
+  SpaceShip bob = new SpaceShip();
+  bob.setX(300);
+  bob.setY(300);
+  bob.setDirectionX(1.0);
+  bob.setDirectionY(1.0);
+  bob.setPointDirection(60);
+  bob.show();
+  bob.move();
 }
 class SpaceShip extends Floater  
 {   
@@ -14,6 +22,11 @@ class SpaceShip extends Floater
     public SpaceShip()
     {
       corners = 12;
+      myColor = color(0, 0, 100);
+      xCorners = new int[corners];
+      yCorners = new int[corners];
+      int [] xCorners = {4, 3, 3, 1, 1, 0, 0, -2, -2, -1, -1, -2};
+      int [] yCorners = {0, 1, -1, 1, -1, 3, -3, 4, -4, 1, -1, 0};
     }
     public void setX(int x){myCenterX = x;}
     public int getX(){return (int)myCenterX;}
