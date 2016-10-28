@@ -1,33 +1,71 @@
 //your variable declarations here
+SpaceShip bob = new SpaceShip();
+Star [] stars = new Star[1000];
+
 public void setup() 
 {
   //your code here
   size(800, 500);
+  for(int i = 0; i<stars.length; i++)
+  {
+    stars[1] = new Star();
+  }
 }
 public void draw() 
 {
-  //your code here
-  SpaceShip bob = new SpaceShip();
-  bob.setX(300);
-  bob.setY(300);
-  bob.setDirectionX(1.0);
-  bob.setDirectionY(1.0);
-  bob.setPointDirection(60);
+  // your code here
+  background(255);
   bob.show();
   bob.move();
+  for(int i = 0; i<stars.length; i++)
+  {
+    stars[1].show();
+  }
 }
+
+public void keyPressed()
+{
+  if(keyCode == UP)
+  {
+    bob.accelerate(1.0);
+  }
+  else if(keyCode == DOWN)
+  {
+    bob.setX((int)(Math.random()*750)+25);
+    bob.setY((int)(Math.random()*450)+25);
+    bob.setDirectionX(0);
+    bob.setDirectionY(0);
+    bob.setPointDirection((int)(Math.random()*360));
+  }
+
+  else if(keyCode == LEFT)
+  {
+    bob.rotate(-10);
+  }
+  else if (keyCode == RIGHT)
+  {
+    bob.rotate(10);
+  }
+}
+
 class SpaceShip extends Floater  
 {   
     //your code here
     public SpaceShip()
     {
       corners = 12;
-      myColor = color(0, 0, 100);
-      xCorners = new int[corners];
-      yCorners = new int[corners];
-      int [] xCorners = {4, 3, 3, 1, 1, 0, 0, -2, -2, -1, -1, -2};
-      int [] yCorners = {0, 1, -1, 1, -1, 3, -3, 4, -4, 1, -1, 0};
+      myColor = color(51, 153, 225);
+      myCenterX = 400;
+      myCenterY = 250;
+      myDirectionX = 0;
+      myDirectionY = 0;
+      myPointDirection = 0;
+      int [] xs = {16, 12, 4, 0, -8, -4, -8, -4, -8, 0, 4, 12};
+      int [] ys = {0, 4, 4, 12, 16, 4, 0, -4, -16, -12, -4, -4};
+      xCorners = xs;
+      yCorners = ys;
     }
+
     public void setX(int x){myCenterX = x;}
     public int getX(){return (int)myCenterX;}
     public void setY(int y){myCenterY = y;}
@@ -39,6 +77,7 @@ class SpaceShip extends Floater
     public void setPointDirection(int degrees){myPointDirection = degrees;}
     public double getPointDirection(){return myPointDirection;}
 }
+
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
   protected int corners;  //the number of corners, a triangular floater has 3   
@@ -116,3 +155,21 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   }   
 } 
 
+class Star
+{
+  private int myX, myY, mySize, myColor;
+  public Star(){
+    myX = (int)(Math.random()*800);
+    myY = (int)(Math.random()*500);
+    mySize = (int)(Math.random()*4);
+    myColor = color(0);
+  }
+
+  public void show()
+  {
+    noStroke();
+    fill(myColor);
+    ellipse(myX, myY, mySize, mySize);
+  }
+
+}
