@@ -8,7 +8,7 @@ public void setup()
   size(800, 500);
   for(int i = 0; i<stars.length; i++)
   {
-    stars[1] = new Star();
+    stars[i] = new Star();
   }
 }
 public void draw() 
@@ -19,7 +19,7 @@ public void draw()
   bob.move();
   for(int i = 0; i<stars.length; i++)
   {
-    stars[1].show();
+    stars[i].show();
   }
 }
 
