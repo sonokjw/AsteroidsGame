@@ -1,6 +1,8 @@
 //your variable declarations here
 SpaceShip bob = new SpaceShip();
-Star [] stars = new Star[1000];
+Star [] stars = new Star[100];
+// Asteroids sue = new Asteroids();
+Asteroids [] manyAsteroids = new Asteroids[10];
 
 public void setup() 
 {
@@ -10,17 +12,33 @@ public void setup()
   {
     stars[i] = new Star();
   }
+
+  for(int i = 0; i<manyAsteroids.length; i++)
+  {
+    manyAsteroids[i] = new Asteroids();
+  }
 }
 public void draw() 
 {
   // your code here
   background(255);
-  bob.show();
-  bob.move();
+
+  // sue.show();
+  // sue.move();
+
   for(int i = 0; i<stars.length; i++)
   {
     stars[i].show();
   }
+
+  for(int i = 0; i<manyAsteroids.length; i++)
+  {
+    manyAsteroids[i].show();
+    manyAsteroids[i].move();
+  }
+
+  bob.show();
+  bob.move();
 }
 
 public void keyPressed()
@@ -162,7 +180,7 @@ class Star
     myX = (int)(Math.random()*800);
     myY = (int)(Math.random()*500);
     mySize = (int)(Math.random()*4);
-    myColor = color(0);
+    myColor = color(249, 201, 71);
   }
 
   public void show()
@@ -173,3 +191,40 @@ class Star
   }
 
 }
+
+
+// class Asteroids extends Floater
+// {
+//   private int speedOfRotation;
+//   public Asteroids()
+//   {
+//     speedOfRotation = (int)(Math.random()*11)-5;
+//     myColor = color(150, 150, 150, 60);
+//     myCenterX = Math.random()*800;
+//     myCenterY = Math.random()*500;
+//     myDirectionX = Math.random()*9-3;
+//     myDirectionY = Math.random()*9-3;
+//     myPointDirection = (int)(Math.random()*360);
+//     corners = 12;
+//     int [] xs = {8, 8, 6, 2, 0, -6, -10, -8, -4, 0, 4, 6};
+//     int [] ys = {0, 2, 4, 6, 8, 6, 2, -6, -8, -8, -6, -4};
+//     xCorners = xs;
+//     yCorners = ys;
+//   }
+
+//   public void setX(int x){myCenterX = x;}
+//   public int getX(){return (int)myCenterX;}
+//   public void setY(int y){myCenterY = y;}
+//   public int getY(){return (int)myCenterY;}
+//   public void setDirectionX(double x){myDirectionX = x;}
+//   public double getDirectionX(){return myDirectionX;}
+//   public void setDirectionY(double y){myDirectionY = y;}
+//   public double getDirectionY(){return myDirectionY;}
+//   public void setPointDirection(int degrees){myPointDirection = degrees;}
+//   public double getPointDirection(){return myPointDirection;}
+
+//   public void move()
+//   {
+//     super.move();
+//   }
+// }
