@@ -197,7 +197,7 @@ class Asteroids extends Floater
   public Asteroids()
   {
     speedOfRotation = (int)(Math.random()*11)-5;
-    myColor = color(125);
+    myColor = color(100);
     myCenterX = Math.random()*800;
     myCenterY = Math.random()*500;
     myDirectionX = Math.random()*5-2;
