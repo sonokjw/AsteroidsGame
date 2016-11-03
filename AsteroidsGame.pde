@@ -21,7 +21,7 @@ public void setup()
 public void draw() 
 {
   // your code here
-  background(255);
+  background(0, 0, 0, 20);
 
 
   for(int i = 0; i<stars.length; i++)
@@ -197,7 +197,7 @@ class Asteroids extends Floater
   public Asteroids()
   {
     speedOfRotation = (int)(Math.random()*11)-5;
-    myColor = color(100, 100, 100);
+    myColor = color(125);
     myCenterX = Math.random()*800;
     myCenterY = Math.random()*500;
     myDirectionX = Math.random()*5-2;
