@@ -3,6 +3,7 @@ body {
     color: rgb(0,0,0);
     font-family: "Open Sans", sans-serif;
     text-align: center;
+    background-color: #cccccc;
     background-image: url("http://cdn.wonderfulengineering.com/wp-content/uploads/2014/04/space-wallpapers-11.jpg");
     background-size: 100%;
 }
