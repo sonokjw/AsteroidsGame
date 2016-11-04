@@ -70,7 +70,7 @@ class SpaceShip extends Floater
     public SpaceShip()
     {
       corners = 12;
-      myColor = color(0, 0, 255);
+      myColor = color(196, 221, 229);
       myCenterX = 400;
       myCenterY = 250;
       myDirectionX = 0;
