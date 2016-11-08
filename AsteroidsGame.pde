@@ -2,20 +2,22 @@
 SpaceShip bob = new SpaceShip();
 Star [] stars = new Star[100];
 
-Asteroids [] manyAsteroids = new Asteroids[10];
+// Asteroids [] manyAsteroids = new Asteroids[10];
+ArrayList <Asteroids> manyAsteroids;
 
 public void setup() 
 {
   //your code here
   size(800, 500);
+  manyAsteroids = new ArrayList <Asteroids>();
   for(int i = 0; i<stars.length; i++)
   {
     stars[i] = new Star();
   }
 
-  for(int i = 0; i<manyAsteroids.length; i++)
+  for(int i = 0; i< 10; i++)
   {
-    manyAsteroids[i] = new Asteroids();
+    manyAsteroids.add(i, new Asteroids());
   }
 }
 public void draw() 
@@ -29,10 +31,12 @@ public void draw()
     stars[i].show();
   }
 
-  for(int i = 0; i<manyAsteroids.length; i++)
+  for(int i = 0; i<manyAsteroids.size(); i++)
   {
-    manyAsteroids[i].show();
-    manyAsteroids[i].move();
+    manyAsteroids.get(i).show();
+    manyAsteroids.get(i).move();
+    if (manyAsteroids.get(i).collide(bob.getX(), bob.getY()) == true)
+      manyAsteroids.remove(i);
   }
 
   bob.show();
@@ -81,6 +85,8 @@ class SpaceShip extends Floater
       xCorners = xs;
       yCorners = ys;
     }
+
+
 
     public void setX(int x){myCenterX = x;}
     public int getX(){return (int)myCenterX;}
@@ -208,6 +214,15 @@ class Asteroids extends Floater
     int [] ys = {0, 2, 4, 6, 8, 6, 2, -6, -8, -8, -6, -4};
     xCorners = xs;
     yCorners = ys;
+  }
+
+  public boolean collide(int x, int y)
+  {
+    if(dist((int)myCenterX, (int)myCenterY, x, y) < 20)
+      return true;
+    else {
+      return false;
+    }
   }
 
   public void setX(int x){myCenterX = x;}
