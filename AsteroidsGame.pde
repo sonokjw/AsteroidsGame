@@ -242,3 +242,22 @@ class Asteroids extends Floater
     super.rotate(speedOfRotation);
   }
 }
+
+public class Bullet extends Floater
+{
+  private double dRadians;
+  public Bullet(SpaceShip theShip)
+  {
+    myCenterX = theShip.getX();
+    myCenterY = theShip.getY();
+    myPointDirection = theShip.getPointDirection();
+    dRadians =myPointDirection*(Math.PI/180);
+    myDirectionX = 5 * Math.cos(dRadians) + theShip.getDirectionX();
+    myDirectionY = 5 * Math.sin(dRadians) + theShip.getDirectionY();
+  }
+
+  public show()
+  {
+    ellipse(myCenterX, myCenterY, 10, 10);
+  }
+}
