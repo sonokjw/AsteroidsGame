@@ -5,6 +5,8 @@ Star [] stars = new Star[100];
 // Asteroids [] manyAsteroids = new Asteroids[10];
 ArrayList <Asteroids> manyAsteroids;
 
+ArrayList <Bullet> manyBullets;
+
 public void setup() 
 {
   //your code here
@@ -19,6 +21,9 @@ public void setup()
   {
     manyAsteroids.add(i, new Asteroids());
   }
+
+  manyBullets = new ArrayList <Bullet>();
+
 }
 public void draw() 
 {
@@ -41,6 +46,21 @@ public void draw()
 
   bob.show();
   bob.move();
+
+  for(int i = 0; i < manyBullets.size(); i++)
+  {
+    manyBullets.get(i).show();
+    manyBullets.get(i).move();
+    for(int j = 0; j < manyAsteroids.size(); j++)
+    {
+      if(manyBullets.get(i).collide(manyAsteroids.get(j).getX(),manyAsteroids.get(j).getY()) == true)
+      {
+        manyBullets.remove(i);
+        manyAsteroids.remove(j);
+        break;
+      }
+    }
+  }
 }
 
 public void keyPressed()
@@ -65,6 +85,11 @@ public void keyPressed()
   else if (keyCode == RIGHT)
   {
     bob.rotate(15);
+  }
+
+  if(key == ' ')
+  {
+    manyBullets.add(new Bullet(bob));
   }
 }
 
@@ -256,8 +281,35 @@ public class Bullet extends Floater
     myDirectionY = 5 * Math.sin(dRadians) + theShip.getDirectionY();
   }
 
-  public show()
+  public void show()
   {
-    ellipse(myCenterX, myCenterY, 10, 10);
+    fill(254, 241, 90);
+    ellipse((int)myCenterX, (int)myCenterY, 10, 10);
   }
+
+  public void move()
+  {
+    myCenterX += myDirectionX;    
+    myCenterY += myDirectionY;
+  }
+
+  public boolean collide(int x, int y)
+  {
+    if(dist((int)myCenterX, (int)myCenterY, x, y) < 10)
+      return true;
+    else {
+      return false;
+    }
+  }
+
+  public void setX(int x){myCenterX = x;}
+  public int getX(){return (int)myCenterX;}
+  public void setY(int y){myCenterY = y;}
+  public int getY(){return (int)myCenterY;}
+  public void setDirectionX(double x){myDirectionX = x;}
+  public double getDirectionX(){return myDirectionX;}
+  public void setDirectionY(double y){myDirectionY = y;}
+  public double getDirectionY(){return myDirectionY;}
+  public void setPointDirection(int degrees){myPointDirection = degrees;}
+  public double getPointDirection(){return myPointDirection;}
 }
